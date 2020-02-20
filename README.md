@@ -15,19 +15,3 @@ WetQual GUI files can be reached from the following links.
 You don’t have to install MATLAB Runtime software if you don’t run Sensitivity Analysis, BMCML, and Forecasting modules.
 
 More detail information can be found in the User Manual.
-
-
-    1) WetQual GUI installer:
-http://auburn.edu/~szi0003/WetQual/WetQual_GUI.msi
-
-    2) WetQual User Manual:
-http://auburn.edu/~szi0003/WetQual/User_Manual_for_WetQual_GUI.pdf
- 
-    3) WetQual Sample Input Files in a Excel file:
-http://auburn.edu/~szi0003/WetQual/Sample_InputFiles_for_WetQual.xlsx
- 
-    4) WetQual Example Projects:
-http://auburn.edu/~szi0003/WetQual/ExampleProjects.zip
- 
-    5) MATLAB® Compiler Runtime R2017a (9.2):
-http://auburn.edu/~szi0003/WetQual/MCR_R2017a_win64_installer.exe
