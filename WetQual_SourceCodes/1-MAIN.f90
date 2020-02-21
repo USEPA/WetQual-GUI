@@ -1,6 +1,6 @@
 !**********************************************************************************************************************
 ! This file includes main program of Wetland model
-! 
+!
 !**********************************************************************************************************************
 !
 PROGRAM Wetland
@@ -14,10 +14,10 @@ PROGRAM Wetland
     Write (*,*) ''
     Write (*,*)	'A numerical model for N, P and C cycling in ponded wetlands'
     Write (*,*)	'Developed by: '
-    Write (*,*)	'   M.M. Hantush' 
-    Write (*,*)	'   L. Kalin' 
-    Write (*,*)	'   S.Isik' 
-    Write (*,*)	'   A. Sharifi' 
+    Write (*,*)	'   M.M. Hantush'
+    Write (*,*)	'   L. Kalin'
+    Write (*,*)	'   S.Isik'
+    Write (*,*)	'   A. Sharifi'
     Write (*,*)	'USEPA and Auburn University (2014-2019) '
 !**********************************************************************************************************************
 !   Call subroutine> InOutTXT  to read the master control file and to open input and output files for inputs 
@@ -30,7 +30,7 @@ PROGRAM Wetland
 !
     CALL FixedInitial   !2.2-FIXEDINITIAL.f90
 !**********************************************************************************************************************
-		
+
     ntday=real(int((n/dt-1)+0.00001))
     !%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
     !Let the MC simulation begin
@@ -42,7 +42,7 @@ PROGRAM Wetland
         !   Call subroutines> readparms to read some of the WetQual parameters which are considered to be random. 
         !   Call subroutines> Equal0 to check the calculated outputs for non-negativity.
         !
-         Call readparms  !2.3-Parms-Calc.f90      
+         Call readparms  !2.3-Parms-Calc.f90
          Call Equal0     !2.4-Neg-EqZero.f90
         !**************************************************************************************************************
     !******************************************************************************************************************
@@ -60,7 +60,7 @@ PROGRAM Wetland
                Call massbalance     !4.0-Daily-MassB.f90
                Call DailyCalcs      !4.0-Daily-MassB.f90
          END DO
-         Call Printresults          !5-PrintResults.f90                                                                                                                                       
+         Call Printresults          !5-PrintResults.f90
     END DO
 !**********************************************************************************************************************
     if (sims==1) then

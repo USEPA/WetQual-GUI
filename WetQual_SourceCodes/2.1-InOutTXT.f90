@@ -6,7 +6,7 @@
 !hydro_climparams   ::the name of hydro-climate file
 !timedepparms       ::the name of input concentrations file
 !generatedparms     ::the name of generated nitrogen-phosphorus-sediment parameters file
-!generatedparmcarbon::the name of generated carbon parameters file 
+!generatedparmcarbon::the name of generated carbon parameters file
 !
 !  Definition of WetQual Outputs
 !Output file Name	::Symbol	::Definition, Units
@@ -86,17 +86,17 @@ open (116,file="116_Ps2.txt",status="unknown")           ! SI:
 open (118,file="118_mw.txt",status="unknown")            ! SI:
 !**********************************************************************************************************************
 
-!¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥  Aµir  ¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥
+!ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½  Aï¿½ir  ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 open (150,file="150_DOCw.txt",status="unknown")				! daily averages of DOC in water
-open (151,file="151_LPOCw.txt",status="unknown") 
-open (152,file="152_RPOCw.txt",status="unknown") 
-open (153,file="153_DOCs1.txt",status="unknown") 
-open (154,file="154_LPOCs1.txt",status="unknown") 
-open (155,file="155_RPOCs1.txt",status="unknown") 
-open (156,file="156_DOCs2.txt",status="unknown") 
-open (157,file="157_LPOCs2.txt",status="unknown") 
-open (158,file="158_RPOCs2.txt",status="unknown") 
-open (159,file="159_TOCw.txt",status="unknown") 
+open (151,file="151_LPOCw.txt",status="unknown")
+open (152,file="152_RPOCw.txt",status="unknown")
+open (153,file="153_DOCs1.txt",status="unknown")
+open (154,file="154_LPOCs1.txt",status="unknown")
+open (155,file="155_RPOCs1.txt",status="unknown")
+open (156,file="156_DOCs2.txt",status="unknown")
+open (157,file="157_LPOCs2.txt",status="unknown")
+open (158,file="158_RPOCs2.txt",status="unknown")
+open (159,file="159_TOCw.txt",status="unknown")
 open (160,file="160_CH4w.txt",status="unknown")
 open (161,file="161_CH4s1.txt",status="unknown")
 open (162,file="162_CH4s2.txt",status="unknown")
@@ -105,4 +105,3 @@ open (162,file="162_CH4s2.txt",status="unknown")
 !**********************************************************************************************************************
 END SUBROUTINE InOutTXT
 !**********************************************************************************************************************
-

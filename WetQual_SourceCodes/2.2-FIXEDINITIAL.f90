@@ -1,8 +1,8 @@
 !**********************************************************************************************************************
-! This subroutine reads the basic model parameters, initial concentrations of nutrients, 
+! This subroutine reads the basic model parameters, initial concentrations of nutrients,
 !                       hydro-climate and input concentration time series.
 !
-!Basic Parameters (“10_basic_parameters.txt” file)
+!Basic Parameters (ï¿½10_basic_parameters.txtï¿½ file)
 !Symbol	::Definition (Units)
 !dt	    ::Time step of simulation (day)
 !n	    ::Number of days of simulation
@@ -16,7 +16,7 @@
 !fNO3w	::Fraction of mineral nitrogen plant uptake as nitrate-N in free water
 !fNO3s1	::Fraction of mineral nitrogen plant uptake as nitrate-N in the aerobic layer
 !fNO3s2	::Fraction of mineral nitrogen plant uptake as nitrate-N in the anaerobic layer
-!w	    ::Angular velocity of earth (15°/h, or ?/12 rad/h)
+!w	    ::Angular velocity of earth (15ï¿½/h, or ?/12 rad/h)
 !apn	::Phosphorus to nitrogen mass ratio produced by mineralization of particulate organic matter (POM)
 !lat	::latitude in radians
 !d_bound::the thickness of a laminar (diffusive) boundary layer situated on top of the soil-water interface (cm)
@@ -25,7 +25,7 @@
 !dn	    ::Day number of the year (day), Julian day
 !*******************************************************************
 !*******************************************************************
-!Initial Concentration (“11_initial_concentration.txt” file)
+!Initial Concentration (ï¿½11_initial_concentration.txtï¿½ file)
 !Symbol	::Definition  (Units)
 !Onw	::Particulate organic nitrogen concentration in free water (mg/L)
 !Onss	::Concentration of refractory organic nitrogen in wetland soil (mg/L)
@@ -58,7 +58,7 @@
 !CH4s2	::Methane concentration in anaerobic sediment layer (mg/L)
 !*******************************************************************
 !*******************************************************************
-!Hydro-Climate Parameters (“12_hydro_climate.txt” file)
+!Hydro-Climate Parameters (ï¿½12_hydro_climate.txtï¿½ file)
 !Symbol	::Definition, Units
 !Qin	::Volumetric inflow rate (m3/day)
 !Qout	::Wetland discharge (outflow) rate (m3/day)
@@ -68,17 +68,17 @@
 !ip	    ::Precipitation rate (cm/day)
 !Qg	    ::Groundwater discharge (negative for infiltration) (m3/day)
 !Uw	    ::Wind speed (m/s)
-!Tair   ::Daily air temperature (°C)
-!Twater	::Daily water temperature (°C) 
+!Tair   ::Daily air temperature (ï¿½C)
+!Twater	::Daily water temperature (ï¿½C)
 !*******************************************************************
 !*******************************************************************
-!Input Concentrations (“13_input_concentrations.txt” file)
+!Input Concentrations (ï¿½13_input_concentrations.txtï¿½ file)
 !Symbol	::Definition (Units)
 !ONin	::Organic nitrogen concentration in incoming flow (mg/L)
 !NO3in	::Nitrate-nitrogen concentration in incoming flow (mg/L)
 !NWin	::Total ammonia-nitrogen ([NH4+] + [NH3]) concentration in incoming flow (mg/L)
 !NO3g	::Nitrate-nitrogen concentration in groundwater discharge (mg/L)
-!Ng	    ::Total ammonia-nitrogen concentration in groundwater discharge (mg/L) 
+!Ng	    ::Total ammonia-nitrogen concentration in groundwater discharge (mg/L)
 !Owin	::Oxygen concentration in incoming flow (mg/L)
 !PO4in	::Phosphate concentration in incoming flow (mg/L)
 !Pg	    ::Total phosphorus concentration in groundwater discharge (mg/L)
@@ -101,7 +101,7 @@ subroutine FixedInitial
 USE parm
 use pprime
 
-IMPLICIT NONE 
+IMPLICIT NONE
 
 INTEGER :: ii,j,k,ni
 
@@ -118,9 +118,9 @@ character *10  datedummy
     read (10,*) text
     !read (10,*) fNw,fNs1,fNs2,fNO3w,fNO3s1,fNO3s2,w,apn,lat,d_bound
     read (10,*) fNw,fNs1,fNs2,fNO3w,fNO3s1,fNO3s2
-                
+
     !read (10,*) fNw,fNs1,fNs2,fNO3w,fNO3s1,fNO3s2,apn
-    !¥¥¥¥¥¥  Aµir  ¥¥¥¥¥¥¥¥¥
+    !ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½  Aï¿½ir  ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     read (10,*) text !units
     read (10,*) apn,lat,amc , lamdaR
     read (10,*) text
@@ -133,10 +133,10 @@ character *10  datedummy
 !***********************************************************************
            d_bound=0
 !***********************************************************************
-           
+
 !**********************************************************************************************************************
             !This is to read the initial concentrations and then convert to g/cm3
-            
+
     open (11,file=initialconc,status="old")
     read (11,*) text
     read (11,*) text
@@ -147,31 +147,31 @@ character *10  datedummy
     read (11,*) mw(0), ms(0)
     read (11,*) text
     read (11,*) Ow(0),Pw(0),Ps1(0),Ps2(0)
-    !¥¥¥¥¥¥  Aµir  ¥¥¥¥¥¥
-    read (11,*) text    
+    !ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½  Aï¿½ir  ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    read (11,*) text
     read (11,*) text
     read (11,*) DOCw(0),LPOCw(0),RPOCw(0),DOCs1(0),LPOCs1(0),RPOCs1(0),DOCs2(0),LPOCs2(0),RPOCs2(0),Ch4w(0),Ch4s1(0),ch4s2(0)
-            
-    close(11)   
+
+    close(11)
 
 !**********************************************************************************************************************
 !****            open generated parameters files  ! SI:                                                                    *******
 !**********************************************************************************************************************
     !This file includes the generated parameter sets
     open (14,file=generatedparms,status="old")
-    read (14,*) text   ! SI: title was inserted to the file 
-    
-    !¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥  Aµir  ¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥
+    read (14,*) text   ! SI: title was inserted to the file
+
+    !ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½  Aï¿½ir  ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
     open (15,file=generatedparmcarbon,status="old")
     read (15,*) text
     read (15,*) text
-    !¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥
+    !ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 !**********************************************************************************************************************
 !****            Load initial parameters for new output files  ! SI:                                                                    *******
 !**********************************************************************************************************************
-           ZOnw(0)=Onw(0)           ; !¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥  Aµir  ¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥
-           ZOnss(0)=Onss(0)         ; ZDOCw(0)=DOCw(0)  
+           ZOnw(0)=Onw(0)           ; !ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½  Aï¿½ir  ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+           ZOnss(0)=Onss(0)         ; ZDOCw(0)=DOCw(0)
            ZOnsf(0)=Onsf(0)         ; ZLPOCw(0)=LPOCw(0)
            ZNw(0)=Nw(0)             ; ZRPOCw(0)=RPOCw(0)
            ZNs1(0)=Ns1(0)           ; ZTOCw(0)=ZDOCw(0)+ZLPOCw(0)+ZRPOCw(0)
@@ -183,13 +183,13 @@ character *10  datedummy
            Za(0)=a(0)               ; ZRPOCs2(0)=RPOCs2(0)
            Zb(0)=b(0)               ; ZCH4w(0)=CH4w(0)
            ZPw(0)=Pw(0)             ; ZCH4s1(0)=CH4s1(0)
-           ZPs1(0)=Ps1(0)           ; ZCH4s2(0)=CH4s2(0)			
-           ZPs2(0)=Ps2(0)           ; ZVw(0)=Vw(0)/1e6   ! this line is just for an test output file. can be eliminated later 						
-           Zms(0)=ms(0)              
-           Zmw(0)=mw(0)              
-!*************************************!¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥*********************************************************************************
-           
-            ONw(0)=ONw(0)*1e-6		!(mg/L to g/cm3 conversion) 
+           ZPs1(0)=Ps1(0)           ; ZCH4s2(0)=CH4s2(0)
+           ZPs2(0)=Ps2(0)           ; ZVw(0)=Vw(0)/1e6   ! this line is just for an test output file. can be eliminated later
+           Zms(0)=ms(0)
+           Zmw(0)=mw(0)
+!*************************************!ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½*********************************************************************************
+
+            ONw(0)=ONw(0)*1e-6		!(mg/L to g/cm3 conversion)
             ONsf(0)= ONsf(0)* 1e-6	!(mg/L to g/cm3 conversion)
             ONss(0)= ONss(0)*1e-6	!(mg/L to g/cm3 conversion)
             Nw(0)=Nw(0)*1e-6		!(mg/L to g/cm3 conversion)
@@ -204,9 +204,9 @@ character *10  datedummy
             Ps2(0)=Ps2(0)*1e-6
 	        mw(0)=mw(0)*1e-6
 	        ms(0)=ms(0)
-            bofixed=b(0) 
+            bofixed=b(0)
 
-           	!¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥  Aµir  ¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥
+           	!ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½  Aï¿½ir  ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 			DOCw(0)=DOCw(0)*1e-6             !(mg/L to g/cm3 conversion)
 			LPOCw(0)=LPOCw(0)*1e-6           !(mg/L to g/cm3 conversion)
 			RPOCw(0)=RPOCw(0)*1e-6           !(mg/L to g/cm3 conversion)
@@ -220,14 +220,14 @@ character *10  datedummy
 			CH4w(0)=CH4w(0)*1e-6
 			CH4s1(0)=CH4s1(0)*1e-6
 			CH4s2(0)=CH4s2(0)*1e-6
-			!¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥
+			!ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 !**********************************************************************************************************************
         ! Reading reservour and time dependent parameters (hydrologic_parameters)
 !**********************************************************************************************************************
     open (12,file=hydro_climparams,status="old")
-    read (12,*) text   ! SI: title was inserted to the file 
-    read (12,*) text   ! SI: title was inserted to the file 
+    read (12,*) text   ! SI: title was inserted to the file
+    read (12,*) text   ! SI: title was inserted to the file
     ii=0
     ni=0
     do while(ii<(int((n)/dt+dt/2)+1))
@@ -236,7 +236,7 @@ character *10  datedummy
         read (12,'(A10)',advance='no') datedummy
         read (12,*)Qin(ii),Qout(ii),Vw(ii),Area(ii),ET(ii),ip(ii),Qg(ii),Uw(ii),temp_air,temp(ii)
         H(ii)=Vw(ii)/Area(ii)
-    
+
         ni=ni+1
         ii=int(ni/dt+dt/2)
     end do
@@ -244,20 +244,20 @@ character *10  datedummy
 !**********************************************************************************************************************
 !**********************************************************************************************************************
     open (13,file=timedepparms,status="old")
-    read (13,*) text   ! SI: title was inserted to the file    
-    read (13,*) text   ! SI: title was inserted to the file   
+    read (13,*) text   ! SI: title was inserted to the file
+    read (13,*) text   ! SI: title was inserted to the file
         ii=0
         ni=0
     do while(ii<(int(real(n)/dt+dt/2)+1))
-    !do i=0,int((n)/dt+0.01) ,int(1/dt+0.01)                                                                                  
+    !do i=0,int((n)/dt+0.01) ,int(1/dt+0.01)
 
         read (13,'(A10)',advance='no') datedummy
         read (13,*) ONin(ii),NO3in(ii),Nwin(ii),NO3g(ii),Ng(ii),Owin(ii),Pin(ii),Pg(ii), mwin(ii),Nair(ii),NO3Air(ii),Qa(ii),Qn(ii), LPOCin(ii) , RPOCin(ii) , DOCin(ii), DOCatm(ii),TOCgw(ii)
-            
+
         ni=ni+1
         ii=int(ni/dt+dt/2)
     end do
-    CLOSE(13)     
+    CLOSE(13)
 !**********************************************************************************************************************
 !**********************************************************************************************************************
     !This is the part we do unit conversion
@@ -268,37 +268,37 @@ character *10  datedummy
         !hydro-climate
         Qin(ii)=Qin(ii)*100*100*100   !(m3/day to cm3/day conversion)
         Qout(ii)=Qout(ii)*100*100*100 !(m3/day to cm3/day conversion)
-        
+
         Area(ii)=Area(ii)*10000       !(m2 to cm2 conversion)
         Vw(ii)=Vw(ii)*100*100*100     !(m3 to cm3 conversion)
         H(ii)=(H(ii))*100             !(m to cm conversion)
-  
+
         ET(ii)=ET(ii)*Area(ii)         !(cm/day to cm3/day)
         Qg(ii)=Qg(ii)*100*100*100     !(m3/day to cm3/day conversion)
-            
+
         !input concentrations
         ONin(ii)=ONin(ii)* 1e-6       !(mg/L to g/cm3 conversion)
         NO3in(ii)=NO3in(ii)* 1e-6     !(mg/L to g/cm3 conversion)
         Nwin(ii)=Nwin(ii)* 1e-6       !(mg/L to g/cm3 conversion)
         NO3g(ii)=NO3g(ii)* 1e-6       !(mg/L to g/cm3 conversion)
         Ng(ii)=Ng(ii)* 1e-6           !(mg/L to g/cm3 conversion)
-        Owin(ii)=Owin(ii)*1e-6 
-        Pin(ii)=Pin(ii)*1e-6 
-        Pg(ii)=Pg(ii)*1e-6 
+        Owin(ii)=Owin(ii)*1e-6
+        Pin(ii)=Pin(ii)*1e-6
+        Pg(ii)=Pg(ii)*1e-6
         mwin(ii)=mwin(ii)*1e-6
         Nair(ii)=Nair(ii)* 1e-6           !SI
         NO3Air(ii)=NO3Air(ii)* 1e-6       !SI
-            
-        !¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥  Aµir  ¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥
+
+        !ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½  Aï¿½ir  ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 		!	TOCin(ii)=TOCin(ii)*1e-6		 !(mg/L to g/cm3 conversion)
         LPOCin(ii)=LPOCin(ii)*1e-6		 !(mg/L to g/cm3 conversion)
         RPOCin(ii)=RPOCin(ii)*1e-6		 !(mg/L to g/cm3 conversion)
         DOCin(ii)=DOCin(ii)*1e-6		 !(mg/L to g/cm3 conversion)
-			
+
         DOCatm(ii)=DOCatm(ii)*1e-6    !(mg/L to g/cm3 conversion)
         TOCgw(ii)=TOCgw(ii)*1e-6		!(mg/L to g/cm3 conversion)
-			
-        !¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥
+
+        !ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         ni=ni+1
         ii=int(real(ni)/dt+dt/2)
 !**********************************************************************************************************************
@@ -314,16 +314,16 @@ character *10  datedummy
 !**********************************************************************************************************************
                 j=int(int(real(ii)*dt+dt/2)/dt+dt/2)   !lower bound of interpolation
  	            k= int((int(real(ii)*dt+dt/2)+1)/dt+dt/2)            !j+int(1/dt+dt/2)             !upper bound of interpolation
-     	       
+
 !**********************************************************************************************************************
             dis_percent= real(ii)/real(int(1/dt+dt/2))-int(real(ii)/real(int(1/dt+dt/2)))
-            
+
             call rainfall_distribution
-           
-            
-            if (rainfalldist<raindist1)then 
+
+
+            if (rainfalldist<raindist1)then
                 raindist1=0
-            end if 
+            end if
                ip(ii)=(rainfalldist-raindist1)*ip(k)*100
                raindist1=rainfalldist
 !**************************************************************
@@ -333,7 +333,7 @@ character *10  datedummy
             ELSE
                 ET(ii)=2.75*ET(k)*sin(2*3.1416*pday/1.0-3.1416/2)
             END IF
-            
+
                 !ip(ii)=ip(k)*(1+cos(2*3.1416*pday/1.0-3.1416))        !Hydrus Manual Eq.2.76 in page 38
 !**********************************************************************************************************************
  	          ! j=int(i/dt+0.0001)
@@ -344,16 +344,16 @@ character *10  datedummy
                     Qin(ii)=Qin(j)+(Qin(k)-Qin(j))*real(ii-j)/real(k-j)
                     Qout(ii)=Qout(j)+(Qout(k)-Qout(j))*real(ii-j)/real(k-j)
                     Area(ii)=Area(j)+(Area(k)-Area(j))*real(ii-j)/real(k-j)
-                    Vw(ii)=Vw(j)+(Vw(k)-Vw(j))*real(ii-j)/real(k-j)  
+                    Vw(ii)=Vw(j)+(Vw(k)-Vw(j))*real(ii-j)/real(k-j)
 
                     H(ii)=H(j)+(H(k)-H(j))*real(ii-j)/real(k-j)
-                    !ip(ii)=ip(j)+(ip(k)-ip(j))*real(ii-j)/real(k-j) 
+                    !ip(ii)=ip(j)+(ip(k)-ip(j))*real(ii-j)/real(k-j)
                     !ET(ii)=ET(j)+(ET(k)-ET(j))*real(ii-j)/real(k-j)
                     Qg(ii)=Qg(j)+(Qg(k)-Qg(j))*real(ii-j)/real(k-j)
                     Uw(ii)=Uw(j)+(Uw(k)-Uw(j))*real(ii-j)/real(k-j)   !SInew
                     temp(ii)=temp(j)+(temp(k)-temp(j))*real(ii-j)/real(k-j)
-	                
-                    
+
+
                     !Input concentrations
                     ONin(ii)=ONin(j)+(ONin(k)-ONin(j))*real(ii-j)/real(k-j)
                     NO3in(ii)=NO3in(j)+(NO3in(k)-NO3in(j))*real(ii-j)/real(k-j)
@@ -363,32 +363,32 @@ character *10  datedummy
                     Owin(ii)=Owin(j)+(Owin(k)-Owin(j))*real(ii-j)/real(k-j)
                     Pin(ii)=Pin(j)+(Pin(k)-Pin(j))*real(ii-j)/real(k-j)
                     Pg(ii)=Pg(j)+(Pg(k)-Pg(j))*real(ii-j)/real(k-j)
-                    mwin(ii)=mwin(j)+(mwin(k)-mwin(j))*real(ii-j)/real(k-j) 
+                    mwin(ii)=mwin(j)+(mwin(k)-mwin(j))*real(ii-j)/real(k-j)
                    ! kga(ii)=kga(j)+(kga(k)-kga(j))*real(ii-j)/real(k-j)
                    ! kgb(ii)=kgb(j)+(kgb(k)-kgb(j))*real(ii-j)/real(k-j)
-                    
+
                     Nair(ii)=Nair(j)+(Nair(k)-Nair(j))*real(ii-j)/real(k-j)       !SI
                     NO3Air(ii)=NO3Air(j)+(NO3Air(k)-NO3Air(j))*real(ii-j)/real(k-j)       !SI
                     Qa(ii)=Qa(j)+(Qa(k)-Qa(j))*real(ii-j)/real(k-j)       !SI
                     Qn(ii)=Qn(j)+(Qn(k)-Qn(j))*real(ii-j)/real(k-j)       !SI
-                
-                    !¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥  Aµir  ¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥
-		        !	TOCin(ii)=TOCin(j)+(TOCin(k)-TOCin(j))*real(ii-j)/real(k-j) 
-			        LPOCin(ii)=LPOCin(j)+(LPOCin(k)-LPOCin(j))*real(ii-j)/real(k-j) 
-			        RPOCin(ii)=RPOCin(j)+(RPOCin(k)-RPOCin(j))*real(ii-j)/real(k-j) 
-			        DOCin(ii)=DOCin(j)+(DOCin(k)-DOCin(j))*real(ii-j)/real(k-j) 
-			        DOCatm(ii)=DOCatm(j)+(DOCatm(k)-DOCatm(j))*real(ii-j)/real(k-j) 
-			        TOCgw(ii)=TOCgw(j)+(TOCgw(k)-TOCgw(j))*real(ii-j)/real(k-j) 
-			        !¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥¥   
+
+                    !ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½  Aï¿½ir  ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		        !	TOCin(ii)=TOCin(j)+(TOCin(k)-TOCin(j))*real(ii-j)/real(k-j)
+			        LPOCin(ii)=LPOCin(j)+(LPOCin(k)-LPOCin(j))*real(ii-j)/real(k-j)
+			        RPOCin(ii)=RPOCin(j)+(RPOCin(k)-RPOCin(j))*real(ii-j)/real(k-j)
+			        DOCin(ii)=DOCin(j)+(DOCin(k)-DOCin(j))*real(ii-j)/real(k-j)
+			        DOCatm(ii)=DOCatm(j)+(DOCatm(k)-DOCatm(j))*real(ii-j)/real(k-j)
+			        TOCgw(ii)=TOCgw(j)+(TOCgw(k)-TOCgw(j))*real(ii-j)/real(k-j)
+			        !ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
 	            end if
-    end do    
+    end do
 !**********************************************************************************************************************
 ! 	        open (200,file="200.txt",status="unknown")
 ! 	        open (201,file="201.txt",status="unknown")
-! 	    DO ii=0,int((n/dt-1)+dt/2) 
+! 	    DO ii=0,int((n/dt-1)+dt/2)
 ! 	        write (200,"(I10,9F15.5)")ii,Qin(ii)*1e-6,Qout(ii)*1e-6,Vw(ii)*1e-6,Area(ii)*1e-4,ET(ii)/Area(ii),ip(ii),Qg(ii)*1e-6,Uw(ii),temp(ii)
-! 	       
+!
 ! 	        write (201,"(I10,18F12.3)")ii, ONin(ii)/1e-6 ,NO3in(ii)/1e-6,Nwin(ii)/1e-6,NO3g(ii)/1e-6,Ng(ii)/1e-6,&
 ! 	        &Owin(ii)/1e-6,Pin(ii)/1e-6,Pg(ii)/1e-6, mwin(ii)/1e-6,Nair(ii)/1e-6,NO3Air(ii)/1e-6,Qa(ii)/1e-6,&
 ! 	        &Qn(ii)/1e-6, LPOCin(ii)/1e-6 , RPOCin(ii)/1e-6 , DOCin(ii)/1e-6, DOCatm(ii)/1e-6,TOCgw(ii)/1e-6
@@ -409,7 +409,7 @@ USE parm
 !dis_type=3
 !time	dt	type I	type Ia	type II	type III
 !(hours)	(hours)	24-hour	24-hour	24-hour	24-hour
-real:: Dist24 (0:240,6) 
+real:: Dist24 (0:240,6)
 
 data  (Dist24(0 ,j), j=1,6)/0,0,0,0,0,0/
 data  (Dist24(1 ,j), j=1,6)/0.1,0.004167,0.00174,0.00224,0.00101,0.001/
@@ -654,24 +654,24 @@ data  (Dist24(239 ,j), j=1,6)/23.9,0.995833,0.99869,0.99811,0.9989,0.99914/
 data  (Dist24(240 ,j), j=1,6)/24,1,1,1,1,1/
 
 !**********************************************************************************************************************
- 
+
         ! real tm1,dtdt,typeI,typeIa,typeII,typeIII,RainDist(0:240,6)
         !dis_type=3
         !timescale=2 !(1=Hourly;   2=Daily)
         !ndisdata(1)=10
-        !ndisdata(2)=240  
+        !ndisdata(2)=240
 !        open (2,file="2_SCSRainfallDistributions.txt",status="old")
-!        read (2,*) text   ! SI: title was inserted to the file  
-!        read (2,*) dis_type 
-               
-!        read (2,*) text   ! SI: title was inserted to the file    
-!        read (2,*) text   ! SI: title was inserted to the file 
+!        read (2,*) text   ! SI: title was inserted to the file
+!        read (2,*) dis_type
+
+!        read (2,*) text   ! SI: title was inserted to the file
+!        read (2,*) text   ! SI: title was inserted to the file
  !       select case (timescale)
 !******************************************************************************
 !        CASE (1)
 !******************************************************************************
 !            ndisdata=10
-!            do ii=0,ndisdata 
+!            do ii=0,ndisdata
 !                read(2,*)tm1,dtdt,typeI,typeIa,typeII,typeIII
 !                RainDist(ii,1)=dtdt
 !                SELECT CASE (dis_type)
@@ -690,10 +690,10 @@ data  (Dist24(240 ,j), j=1,6)/24,1,1,1,1,1/
 !******************************************************************************
 !            ndisdata=10
 !            do kk=1,13
-!                read (2,*) text 
+!                read (2,*) text
 !            end do
-   dis_type=3                         
-            do k=0,240 
+   dis_type=3
+            do k=0,240
                 !read(2,*)tm1,dtdt,typeI,typeIa,typeII,typeIII
                 RainDist(k,1)=Dist24(k,2)   !dtdt
                 SELECT CASE (dis_type)
@@ -706,7 +706,7 @@ data  (Dist24(240 ,j), j=1,6)/24,1,1,1,1,1/
                     CASE (4)
                         RainDist(k,2)=Dist24(k,6)   !typeIII
                 END SELECT
-            end do   
+            end do
 !******************************************************************************
 !        END SELECT
 !******************************************************************************
