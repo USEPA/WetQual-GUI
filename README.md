@@ -1,3 +1,5 @@
+DEPRECATED - This repository has been archived and is no longer maintained. The code is provided for historical reference and may contain unpatched or unknown vulnerabilities. It should not be used in production systems.
+
 # WetQual-GUI
 
 This  Graphical  User  Interfaces  (GUI)  was developed  for  the  Wetland  Water  Quality  Model, WetQual. The process-based WetQual model  simulates  nitrogen  (N),  phosphorus  (P),  total  suspended  sediment  (TSS)  and  carbon  (C)  cycles  and  their  dynamics  in  wetlands.  The  model  partitions  a  wetland  into  three  basic  compartments:  (1)  (free)  water  column,  (2)  wetland  soil  layer,  which  is  further  portioned  into  aerobic and anaerobic zones, and (3) plant biomass.
